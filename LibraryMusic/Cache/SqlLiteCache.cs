@@ -15,7 +15,6 @@ namespace LibraryMusic
         private readonly string dbFileName = "SearchDB.db3";
         private SQLiteConnection m_dbConn;
         private SQLiteCommand m_sqlCmd;
-        private readonly DataTable dTable = new DataTable();
 
         public SqlLiteCache()
         {
@@ -24,11 +23,15 @@ namespace LibraryMusic
             CreateDB();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="searchApiPath"></param>
+        /// <returns></returns>
+
         public string GetFromCache(string searchApiPath)
         {
             Console.WriteLine("Подгружаем из кэша...");
-
-            //CreateDB();
 
             String result = string.Empty;
             String sqlQuery;
@@ -45,10 +48,11 @@ namespace LibraryMusic
                            "WHERE apiPath = '" + searchApiPath + "'" +
                            "Order by id desc LIMIT 1";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlQuery, m_dbConn);
+                DataTable dTable = new DataTable();
                 adapter.Fill(dTable);
                 if (dTable != null && dTable.Rows.Count > 0)
                 {
-                     result = dTable.Rows[0][0].ToString();
+                    result = dTable.Rows[0][0].ToString();
                 }
                 else
                 {
@@ -63,10 +67,10 @@ namespace LibraryMusic
             return result;
         }
 
-        public void SaveInCache(string apiPath, string searchText, string searchResult)
+        public void SaveInCache(string apiPath, string searchResult)
         {
             /// <summary>
-            /// Заносим альбомы в БД
+            /// Заносим результат запроса в БД
             /// </summary>
             if (m_dbConn.State != ConnectionState.Open)
             {
@@ -75,7 +79,7 @@ namespace LibraryMusic
 
             try
             {
-                m_sqlCmd.CommandText = $"INSERT INTO SearchResult ('apiPath', 'text', 'result') values ('{apiPath}','{searchText}','{searchResult.Replace("'", "`")}' ); ";                
+                m_sqlCmd.CommandText = $"INSERT INTO SearchResult ('apiPath', 'result') values ('{apiPath}','{searchResult.Replace("'", "`")}' ); ";                
                 m_sqlCmd.ExecuteNonQuery();
             }
             catch (SQLiteException ex)

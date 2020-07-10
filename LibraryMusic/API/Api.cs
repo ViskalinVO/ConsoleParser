@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace LibraryMusic
 {
-    abstract class API 
+    /// <summary>
+    /// Абстрактный класс. Родительский для всех API
+    /// </summary>
+    abstract class API
     {
         abstract public string UrlPath { get; set; }
         public string GetQuery(string url)

@@ -91,6 +91,7 @@
     <Compile Include="ApplesITunes\MusicAlbumsParser.cs" />
     <Compile Include="Cache\SqlLiteCache.cs" />
     <Compile Include="Cache\ICache.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="IPrinter.cs" />
     <Compile Include="Program.cs" />

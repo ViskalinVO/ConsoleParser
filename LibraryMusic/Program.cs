@@ -25,7 +25,7 @@ namespace LibraryMusic
             do
             {
                 parser.Run();
-                Console.WriteLine("Желаете повторить поиск? Нажмите \"Y\"");
+                Console.WriteLine("Желаете повторить поиск? Введите \"Y\"");
                 done = Console.ReadLine().ToUpper() != "Y";
             }
             while (!done);

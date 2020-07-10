@@ -12,12 +12,12 @@ namespace LibraryMusic
     //todo как вариант расширения
     class FileCache : ICache
     {
-        public string GetFromCache(string searchText)
+        public string GetFromCache(string apiPath)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveInCache(string apiPath, string searchText, string searchResult)
+        public void SaveInCache(string apiPath, string searchResult)
         {
             throw new NotImplementedException();
         }

@@ -8,7 +8,15 @@ namespace LibraryMusic
 {
     interface IAPI
     {
+        /// <summary>
+        /// Шаблон строки запроса. У каждого API свой
+        /// </summary>
         string UrlPath { get; set; }
+        /// <summary>
+        /// запрос к серверу
+        /// </summary>
+        /// <param name="url">строка запроса</param>
+        /// <returns></returns>
         string GetQuery(string url);
         /// <summary>
         /// Десириализуем ответ от API и приводим к универсальному классу ответа

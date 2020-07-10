@@ -30,7 +30,7 @@ namespace LibraryMusic
                     //запрашиваем данные с сервера
                     jsonAnswer = this.Api.GetQuery(apiPath);
                     //Сохраняем результат запроса в кэш
-                    this.Cache.SaveInCache(apiPath, searchText, jsonAnswer); 
+                    this.Cache.SaveInCache(apiPath, jsonAnswer); 
                 }
                 catch (Exception e)
                 {
@@ -41,15 +41,12 @@ namespace LibraryMusic
                 }
                 if (!string.IsNullOrEmpty(jsonAnswer))
                 {
+                    //парсим результат и приводим к базовому типу
                     var responseData = this.Api.DeserializeToBaseResponseClass(searchText, jsonAnswer);
 
                     if (responseData != null && responseData.CollectionItems.Count > 0)
                     {
-                        Console.WriteLine("Найдено:{0} альбомов: ", responseData.CollectionItems.Count);
-                        foreach (var result in responseData.CollectionItems)
-                        {
-                            Console.WriteLine(result.CollectionItemName);
-                        }
+                        responseData.Print(PrinterType.Console);
                     }
                     else
                     {

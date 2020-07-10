@@ -9,6 +9,6 @@ namespace LibraryMusic
     //todo реализовать возможность вывода резултата запроса различными вариантами (консоль, файл, печать)
     interface IPrinter
     {
-        void Print(string text);
+        void Print(PrinterType printerType);
     }
 }

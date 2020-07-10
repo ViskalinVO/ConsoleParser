@@ -8,7 +8,17 @@ namespace LibraryMusic
 {
     interface ICache
     {
-        void SaveInCache(string apiPath, string searchText, string searchResult);
-        string GetFromCache(string searchText);
+        /// <summary>
+        /// Сохраняет данные успешно запроса в кэше
+        /// </summary>
+        /// <param name="apiPath">строка запроса к серверу</param>
+        /// <param name="searchResult">результат запроса к серверу</param>
+        void SaveInCache(string apiPath, string searchResult);
+        /// <summary>
+        /// Берем данные из Кэша
+        /// </summary>
+        /// <param name="apiPath">строка запроса к серверу</param>
+        /// <returns></returns>
+        string GetFromCache(string apiPath);
     }
 }
